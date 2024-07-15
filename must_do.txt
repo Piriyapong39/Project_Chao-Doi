@@ -1,0 +1,24 @@
+
+03/07/67
+Login
+Register
+
+
+04/07/67
+Homepage only login user can user
+    --> Home page with all Data
+    --> Delete post patch Data
+
+05/07/67
+Backend:
+    Connect Database
+    Direction API
+
+06/07/67 
+Watch Riyahd master let'go aurora
+
+07/07/67
+Connect back end to fronend
+
+                กำไรต้องเป็น + และ font ต้องเขียว / ขาดทุน ตรงข้าม และ font แดง
+                Position ==> Buy => green , Sell => Red
