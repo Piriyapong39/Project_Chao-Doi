@@ -1,0 +1,25 @@
+.buy {
+    color: green;
+    font-weight: bold;
+}
+
+.sell {
+    color: red;
+}
+
+.delete-button {
+    margin: 3px;
+    border: none;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+
+
+.delete-button:hover {
+    background-color: #333;
+
+}

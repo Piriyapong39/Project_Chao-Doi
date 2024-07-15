@@ -1,0 +1,56 @@
+
+.container {
+    max-width: 400px;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+  
+  .greet-user {
+    font-size: 2rem;
+    color: #333;
+}
+  
+.box-form {
+    margin-top: 20px;
+}
+  
+.lable-logre {
+    display: block;
+    margin-bottom: 6px;
+    color: #666;
+    font-size: 1rem;
+    text-align: left;
+}
+  
+input[type="email"],
+input[type="password"],
+.btn-log {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+  
+.btn-log {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+  
+.btn-log:hover {
+    background-color: #0056b3;
+}
+  
+input[type="email"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+  
