@@ -22,11 +22,11 @@ app.use(cors())
 //config mysql
 const mysql = require("mysql2")
 const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  database: 'chao-doy',
+  host: process.env.DB_HOST || 'localhost',
+  user: process.env.DB_USER || 'root',
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME || 'chao-doy',
 });
-
 
 // Register
 app.post("/register", jsonParser, async function(req, res) {
