@@ -5,6 +5,7 @@ const CloseTradePosition = ({tradeID}) => {
     const [popup, setPopup] = useState(false);
     const [formData, setFormData] = useState({
         ClosePrice: "",
+        Funding: "",
         ReasonClose: ""
     });
     const openPopup = () => setPopup(true);
@@ -58,6 +59,19 @@ const CloseTradePosition = ({tradeID}) => {
                                     value={formData.ClosePrice}
                                     onChange={handleChange}
                                     placeholder="ราคาที่ปิด Position" 
+                                    required
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="Funding">ค่า Funding</label>
+                                <input 
+                                    id="Funding"
+                                    type="number" 
+                                    step="0.01" 
+                                    name="Funding"
+                                    value={formData.Funding}
+                                    onChange={handleChange}
+                                    placeholder="ค่า Funding ในการถือ Position" 
                                     required
                                 />
                             </div>

@@ -59,6 +59,7 @@ const ShowAllData = () => {
                         <th>LotSize</th>
                         <th>ClosePrice</th>
                         <th>Profit</th>
+                        <th>Funding</th>
                         <th>ReasonTrade</th>
                         <th>ReasonClose</th>
                         <th>StatusTrade</th>
@@ -76,6 +77,7 @@ const ShowAllData = () => {
                             <td>{item.LotSize}</td>
                             <td>{item.ClosePrice}</td>
                             <td>{item.Profit}</td>
+                            <td>{item.Funding}</td>
                             <td>{item.ReasonTrade}</td>
                             <td>{item.ReasonClose}</td>
                             <td>{statusTrade(item.StatusTrade)}</td>

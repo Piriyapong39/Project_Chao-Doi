@@ -1,8 +1,9 @@
-version: '3'
+version: '3.8'
+
 services:
   frontend:
     build:
-      context: ./chao-doy
+      context: ./chao-doy  # ตำแหน่งของ Dockerfile สำหรับ frontend
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
