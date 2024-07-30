@@ -3,7 +3,7 @@ const cors = require("cors")
 require('dotenv').config()
 var bodyParser = require('body-parser')
 var jsonParser = bodyParser.json()
-const bcrypt = require("bcryptjs")
+const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const authenticateToken = require("./modules/authen.js")
 const updateTotalProfit = require("./modules/UpdateTotalProfit.js")
@@ -22,11 +22,11 @@ app.use(cors())
 //config mysql
 const mysql = require("mysql2")
 const connection = mysql.createConnection({
-  host: process.env.DB_HOST || 'localhost',
-  user: process.env.DB_USER || 'root',
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME || 'chao-doy',
+    host: 'localhost',
+    user: 'root',
+    database: 'chao-doy'
 });
+
 
 // Register
 app.post("/register", jsonParser, async function(req, res) {
@@ -142,7 +142,7 @@ app.post("/authen/openposition", jsonParser, authenticateToken, async function(r
 app.post("/authen/closeposition/:id", jsonParser, authenticateToken, async function(req, res){
     const User_ID = req.user.id
     const tradeId = req.params.id
-    const {ClosePrice, ReasonClose, Funding} = req.body
+    const {ClosePrice, ReasonClose} = req.body
     if (!User_ID) {
         res.json({status:"err", msg:"User ID not found"})
     }    
@@ -151,9 +151,6 @@ app.post("/authen/closeposition/:id", jsonParser, authenticateToken, async funct
     }
     if (!ClosePrice) {  
         return res.json({status:"err", msg:"Close Price is required"})
-    }
-    if (!Funding) {
-        res.json({status:"err", msg:"Funding is required"})
     }
     try {
         const [tradeData] = await connection.promise().query(
@@ -183,7 +180,7 @@ app.post("/authen/closeposition/:id", jsonParser, authenticateToken, async funct
         const hours = Math.floor((SpendTime % (60 * 24)) / 60);
         const minutes = SpendTime % 60;       
         const formattedTime = `${days} วัน ${hours} ชั่วโมง ${minutes} นาที`             
-        const Profit = (ClosePrice - EntryPrice) * LotSize * 100 * (value) - (Funding)
+        const Profit = (ClosePrice - EntryPrice) * LotSize * 100 * (value)
         const [result] = await connection.promise().query(
             `UPDATE tradedata 
              SET DateClose = ?,
@@ -191,10 +188,9 @@ app.post("/authen/closeposition/:id", jsonParser, authenticateToken, async funct
                 ReasonClose = ?,
                 StatusTrade = false,
                 SpendTime = ?,
-                Profit = ?,
-                Funding = ?
+                Profit = ?
              WHERE id = ? AND User_ID = ?`,
-            [DateClose, ClosePrice, ReasonClose, formattedTime, Profit, Funding, tradeId, User_ID]
+            [DateClose, ClosePrice, ReasonClose, formattedTime, Profit, tradeId, User_ID]
         )
         if (result.affectedRows === 0) {
             return res.json({status:"err", msg:"Failed to update trade"})
@@ -283,7 +279,6 @@ app.get("/authen/getsomedata", jsonParser, authenticateToken, async function(req
 app.listen(port, ()=>{
     console.log(`Server in running on Port ${port}`)
 })
-
 
 
 

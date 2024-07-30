@@ -25,7 +25,7 @@ const UserRegister = () => {
         try {
             const response = await fetch('http://localhost:3333/register', requestOptions);
             if (!response.ok) {
-                throw new Error('เกิดข้อผิดพลาดในการลงทะเบียน');
+                throw new Error("เกิดข้อผิดพลาดในการ Register")
             }  
             const data = await response.json();
             if (data.status === "err") {

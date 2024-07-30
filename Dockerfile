@@ -3,6 +3,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 RUN npm install mysql2
+RUN npm install dotenv
 COPY . .
-EXPOSE 5000
-CMD ["npm", "start"]
+EXPOSE 3333
+CMD ["node", "app.js"]

@@ -3,12 +3,13 @@ version: '3.8'
 services:
   frontend:
     build:
-      context: ./chao-doy  # ตำแหน่งของ Dockerfile สำหรับ frontend
+      context: ./chao-doy
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
     depends_on:
       - backend
+    restart: always
 
   backend:
     build:
@@ -19,22 +20,32 @@ services:
     depends_on:
       - db
     environment:
-      - DB_HOST=db
+      - DB_HOST=localhost
       - DB_USER=root
-      - DB_PASSWORD=yourpassword
       - DB_NAME=chao-doy
+      - DB_PORT=3306
+    restart: always
 
   db:
     image: mysql:8.0
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: yourpassword
       MYSQL_DATABASE: chao-doy
     volumes:
       - mysql_data:/var/lib/mysql
     ports:
       - "3306:3306"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    environment:
+      PMA_HOST: db
+    restart: always
 
 volumes:
   mysql_data:
